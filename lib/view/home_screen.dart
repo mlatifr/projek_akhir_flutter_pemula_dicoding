@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
+import 'catalog_homes_for_sale.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
     Key? key,
@@ -16,30 +18,7 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
-        title: SafeArea(
-            child: Stack(
-          children: [
-            Text(
-              'homely',
-              style: TextStyle(
-                fontSize: _screenWidth * .05,
-                fontWeight: FontWeight.bold,
-                foreground: Paint()
-                  ..style = PaintingStyle.stroke
-                  ..strokeWidth = 2
-                  ..color = Colors.black,
-              ),
-            ),
-            Text(
-              'homely',
-              style: TextStyle(
-                fontSize: _screenWidth * .05,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        )),
+        title: TIttleText(screenWidth: _screenWidth, tittle: 'homely'),
       ),
       body: Stack(
         children: [
@@ -73,14 +52,33 @@ class HomeScreen extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) {
-                        //   return DetailPage();
-                        // }));
+                        var appBarColor = Colors.black;
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return CatalogHomesForSale(
+                            changeColor: appBarColor,
+                          );
+                        }));
                       },
-                      child: const Text("CLICK HERE"),
+                      child: const Text("CLICK BLACK"),
                       style: ElevatedButton.styleFrom(
                           primary: Colors.black,
+                          textStyle: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        var appBarColor = Colors.blue;
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return CatalogHomesForSale(
+                            changeColor: appBarColor,
+                          );
+                        }));
+                      },
+                      child: const Text("CLICK BLUE"),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.blue,
                           textStyle: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold)),
                     ),
@@ -107,5 +105,43 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class TIttleText extends StatelessWidget {
+  const TIttleText(
+      {Key? key, required double screenWidth, required this.tittle})
+      : _screenWidth = screenWidth,
+        super(key: key);
+
+  final double _screenWidth;
+  final String tittle;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Stack(
+      children: [
+        Text(
+          tittle,
+          style: TextStyle(
+            fontSize: _screenWidth * .05,
+            fontWeight: FontWeight.bold,
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 2
+              ..color = Colors.black,
+          ),
+        ),
+        Text(
+          tittle,
+          style: TextStyle(
+            fontSize: _screenWidth * .05,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    ));
   }
 }
