@@ -63,10 +63,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       },
                       child: const Text("Navigate to list home"),
-                      // style: ElevatedButton.styleFrom(
-                      //     primary: Colors.black,
-                      //     textStyle: const TextStyle(
-                      //         fontSize: 20, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(
                       height: _screenHeight * .04,
