@@ -4,24 +4,17 @@ import 'package:flutter/material.dart';
 
 var _screenWidth, _screenHeight;
 
-class CatalogHomesForSale extends StatefulWidget {
-  final Color changeColor;
-  const CatalogHomesForSale({Key? key, required this.changeColor})
-      : super(key: key);
+class CatalogHomesForSale extends StatelessWidget {
+  const CatalogHomesForSale({
+    Key? key,
+  }) : super(key: key);
 
-  @override
-  State<CatalogHomesForSale> createState() => _CatalogHomesForSaleState();
-}
-
-class _CatalogHomesForSaleState extends State<CatalogHomesForSale> {
   @override
   Widget build(BuildContext context) {
     _screenWidth = MediaQuery.of(context).size.width;
     _screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: widget.changeColor,
-      ),
+      appBar: AppBar(),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth < 600) {

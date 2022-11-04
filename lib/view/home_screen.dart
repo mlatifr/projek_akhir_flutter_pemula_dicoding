@@ -3,10 +3,13 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 import 'catalog_homes_for_sale.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({
-    Key? key,
-  }) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  Color _backgroundColor = Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class HomeScreen extends StatelessWidget {
               height: _screenHeight / 2 + (_screenHeight * 0.2),
               // color: Colors.green,
               child: Container(
-                // color: Colors.amber,
+                color: _backgroundColor,
                 margin: EdgeInsets.only(top: _screenHeight * .1),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -48,39 +51,44 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: _screenHeight * .08,
+                      height: _screenHeight * .04,
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        var appBarColor = Colors.black;
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return CatalogHomesForSale(
-                            changeColor: appBarColor,
-                          );
-                        }));
+                        setState(() {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const CatalogHomesForSale();
+                          }));
+                        });
                       },
-                      child: const Text("CLICK BLACK"),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.black,
-                          textStyle: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
+                      child: const Text("Navigate to list home"),
+                      // style: ElevatedButton.styleFrom(
+                      //     primary: Colors.black,
+                      //     textStyle: const TextStyle(
+                      //         fontSize: 20, fontWeight: FontWeight.bold)),
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        var appBarColor = Colors.blue;
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return CatalogHomesForSale(
-                            changeColor: appBarColor,
-                          );
-                        }));
-                      },
-                      child: const Text("CLICK BLUE"),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.blue,
-                          textStyle: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
+                    SizedBox(
+                      height: _screenHeight * .04,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            if (_backgroundColor == Colors.lightGreenAccent) {
+                              _backgroundColor = Colors.white;
+                            } else {
+                              _backgroundColor = Colors.lightGreenAccent;
+                            }
+                          });
+                        },
+                        child: const Text("Change Background Color"),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.blue,
+                            textStyle: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                      ),
                     ),
                   ],
                 ),
